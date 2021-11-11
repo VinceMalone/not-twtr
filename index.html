@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/birds.png" />
+    <title>Not Twitter</title>
+    <meta name="description" content="This is not twitter.com" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        overscroll-behavior: none;
+      }
+      body {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      alt="emoji style graphic of a bird on a skull"
+      height="534"
+      id="bird-on-skull"
+      src="/bird_on_skull.png"
+      width="534"
+    />
+    <script>
+      const img = document.querySelector('#bird-on-skull');
+      const maxSize = Math.min(window.innerHeight, window.innerWidth);
+
+      img.height = maxSize;
+      img.width = maxSize;
+
+      let scale = 56 / maxSize;
+      let scaleFactor = 1.001;
+
+      function frame() {
+        img.style.transform = `scale(${scale})`;
+        scale = Math.min(1, scale * scaleFactor);
+
+        if (scale <= 1) {
+          requestAnimationFrame(frame);
+        }
+      }
+
+      requestAnimationFrame(frame);
+    </script>
+  </body>
+</html>
